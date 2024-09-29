@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuidora Ss&M</title>
+    <style>
+        /* CSS INCLUIDO */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 50px;
+            margin-right: 10px;
+            
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        #hero {
+            background: url('assets/FONDO/FONDO.jpg') no-repeat center center/cover;
+            color: #fff;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }   
+
+        #hero h2 {
+            font-size: 48px;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 20px;
+            margin-bottom: 2rem;
+        }
+
+        #hero .btn {
+            background-color: #ffcc00;
+            color: #333;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        #hero .btn:hover {
+            background-color: #333;
+            color: #ffcc00;
+        }
+
+        #productos {
+            padding: 4rem 1rem;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        #productos h2 {
+            margin-bottom: 2rem;
+            font-size: 36px;
+        }
+
+        .productos-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+            gap: 20px; /* Espacio entre productos */
+            margin: 20px 0;
+        }
+
+        .producto {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .producto:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .producto img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+
+        /* Carrito de compras */
+        #carrito {
+            position: fixed; /* Mantiene el carrito fijo */
+            right: 20px; /* Espaciado desde el borde derecho */
+            top: 100px; /* Espaciado desde el borde superior, ajusta según sea necesario */
+            width: 300px; /* Ancho del carrito */
+            max-height: calc(100vh - 120px); /* Altura máxima del carrito */
+            overflow-y: auto; /* Permite desplazamiento si el contenido excede la altura */
+            background-color: #fff; /* Color de fondo */
+            border: 1px solid #ccc; /* Borde del carrito */
+            border-radius: 10px; /* Esquinas redondeadas */
+            padding: 15px; /* Espaciado interno */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra del carrito */
+            z-index: 100; /* Asegura que el carrito esté encima de otros elementos */
+        }
+
+
+        #carrito h2 {
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+
+        .carrito-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .carrito-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        .subtotal {
+            font-size: 18px;
+            margin: 1rem 0;
+        }
+
+        .carrito-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .carrito-buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ff5733;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .carrito-buttons button:hover {
+            background-color: #c70039;
+        }
+
+        #seguimiento {
+            padding: 3rem 1rem;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        #seguimiento input {
+            padding: 10px;
+            width: 250px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #seguimiento button {
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #seguimiento button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        #contacto {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        #contacto p {
+            margin: 5px 0;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="assets/LOGOS/Ss&M.png" alt="Logo Ss&M">
+            <h1>Distribuidora Ss&M</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#seguimiento">Seguimiento de Pedidos</a></li>
+                <li><a href="#contacto">Contacto</a></li>   
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2>Compra tus herramientas de construcción</h2>
+        <p>Monitorea el estado de tu pedido en tiempo real</p>
+        <a href="#productos" class="btn">Ver Productos</a>
+    </section>
+
+    <section id="productos">
+        <h2>Nuestros Productos</h2>
+        <div class="productos-container">
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Pico">
+                <h3>Pico</h3>
+                <p>Precio: S/17</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'assets/PRODUCTOS/PICO_BELLOTA.webp')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/PICO_BELLOTA.webp" alt="Hacha de rajar">
+                <h3>Hacha de rajar</h3>
+                <p>Precio: S/60</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="assets/PRODUCTOS/ZAPAPICO_BELLOTA.webp" alt="Zapapico">
+                <h3>Zapapico</h3>
+                <p>Precio: S/19</p>
+                <button onclick="addToCart('Hacha de rajar', 60, 'images/hacha.jpg')">Añadir al carrito</button>
+            </div>
+                        <!-- Carrito de compras -->
+            <div id="carrito">
+                <h2>Carrito</h2>
+                <div id="carrito-items"></div>
+                <p class="subtotal">Subtotal: S/<span id="subtotal">0</span></p>
+                <div class="carrito-buttons">
+                    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seguimiento">
+        <h2>Seguimiento de Pedido</h2>
+        <p>Introduce tu número de pedido para monitorear el estado:</p>
+        <input type="text" placeholder="Introduce tu número de pedido">
+        <button>Seguir pedido</button>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Teléfono: +51 999 999 999</p>
+        <p>Email: contacto@distribuidora-ssm.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Distribuidora Ss&M. Todos los derechos reservados.</p>
+    </footer>
+
+
+
+
+    <script>
+        let carrito = []; // Array para almacenar los productos del carrito
+        let subtotal = 0; // Variable para el subtotal
+
+        function addToCart(nombre, precio, imagen) {
+            carrito.push({ nombre, precio, imagen });
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const carritoItems = document.getElementById('carrito-items');
+            carritoItems.innerHTML = '';
+
+            carrito.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.classList.add('carrito-item');
+                div.innerHTML = `
+                    <img src="${item.imagen}" alt="${item.nombre}">
+                    <p>${item.nombre} - S/${item.precio}</p>
+                    <button onclick="eliminarProducto(${index})">Eliminar</button>
+                `;
+                carritoItems.appendChild(div);
+            });
+
+            subtotal = carrito.reduce((acc, item) => acc + item.precio, 0);
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+        }
+
+        function eliminarProducto(index) {
+            carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            actualizarCarrito();
+        }
+        
+        // JS INCLUIDO (si deseas añadir funcionalidades adicionales)
+        // Puedes manejar el seguimiento de pedido con un evento click
+        document.querySelector('#seguimiento button').addEventListener('click', function() {
+            let pedido = document.querySelector('#seguimiento input').value;
+            if (pedido === "") {
+                alert("Por favor, introduce un número de pedido válido.");
+            } else {
+                alert("Seguimiento en progreso para el pedido: " + pedido);
+                // Aquí puedes agregar una lógica de validación o consulta en base de datos
+            }
+        });
+    </script>
+</body>
+</html>
